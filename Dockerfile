@@ -1,18 +1,18 @@
-# Usa una imagen base de Python
-FROM python:3.10-slim
+FROM python:3.13-slim
 
-# Establece el directorio de trabajo
-WORKDIR /app
+WORKDIR /src
 
-# Copia los archivos de la aplicación
-COPY src/ /app/src
-COPY requirements.txt /app
+COPY requirements.txt /src/
 
-# Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expone el puerto de la aplicación
+COPY ./src /src/
+
 EXPOSE 5000
 
-# Comando para ejecutar la aplicación
-CMD ["python", "/app/src/main.py"]
+CMD ["python", "app.py"]
+
+ENTRYPOINT ["python", "app.py"]
+
+
+
